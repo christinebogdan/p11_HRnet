@@ -13,14 +13,22 @@ import {
   Select,
   Line,
 } from "../styles/home";
+import { useContext } from "react";
+import { AppContext } from "../App";
 
 function Home(props) {
   const history = useHistory();
+  const [state, dispatch] = useContext(AppContext);
 
   const viewEmployees = () => {
     history.push("/employee-list");
   };
 
+  const handleChange = (e) => {
+    dispatch({ type: e.target.id, value: e.target.value });
+  };
+
+  console.log(state);
   return (
     <>
       <Container>
@@ -32,37 +40,41 @@ function Home(props) {
         <H2>CREATE EMPLOYEE</H2>
         <Form>
           <Label htmlFor="first-name">First Name</Label>
-          <Input type="text" id="first-name" />
+          <Input type="text" id="first-name" onChange={handleChange} />
 
-          <Label htmlFor="last-name">Last Name</Label>
-          <Input type="text" id="last-name" />
+          <Label htmlFor="date-of-birth">Last Name</Label>
+          <Input type="text" id="last-name" onChange={handleChange} />
 
           <Label htmlFor="date-of-birth">Date of Birth</Label>
-          {/* <Input id="date-of-birth" type="text" /> */}
-          <DatePickerInput id="date-of-birth"></DatePickerInput>
+          <DatePickerInput
+            id="date-of-birth"
+            onChange={handleChange}
+          ></DatePickerInput>
 
           <Label htmlFor="start-date">Start Date</Label>
-          {/* <Input id="start-date" type="text" /> */}
-          <DatePickerInput id="start-date"></DatePickerInput>
+          <DatePickerInput
+            id="start-date"
+            onChange={handleChange}
+          ></DatePickerInput>
 
           <Fieldset>
             <legend>Address</legend>
 
             <Label htmlFor="street">Street</Label>
-            <Input id="street" type="text" />
+            <Input id="street" type="text" onChange={handleChange} />
 
             <Label htmlFor="city">City</Label>
-            <Input id="city" type="text" />
+            <Input id="city" type="text" onChange={handleChange} />
 
             <Label htmlFor="state">State</Label>
-            <select name="state" id="state"></select>
+            <select name="state" id="state" onChange={handleChange}></select>
 
             <Label htmlFor="zip-code">Zip Code</Label>
-            <Input id="zip-code" type="number" />
+            <Input id="zip-code" type="number" onChange={handleChange} />
           </Fieldset>
 
           <Label htmlFor="department">Department</Label>
-          <Select name="department" id="department">
+          <Select name="department" id="department" onChange={handleChange}>
             <option>Sales</option>
             <option>Marketing</option>
             <option>Engineering</option>

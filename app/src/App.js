@@ -1,8 +1,9 @@
 import "./App.css";
 import Home from "./views/Home";
-import { useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
+import { reducer, initialState } from "./state/reducer";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -21,24 +22,30 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+export const AppContext = React.createContext();
+
 function App() {
+  // const [state, dispatch] = useReducer(reducer, initialState);
+  const contextValue = useReducer(reducer, initialState);
   useEffect(() => {
     document.title = "HRnet";
   });
 
   return (
     <>
-      <GlobalStyle />
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="employee-list">
-            <div>Employees</div>
-          </Route>
-        </Switch>
-      </Router>
+      <AppContext.Provider value={contextValue}>
+        <GlobalStyle />
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="employee-list">
+              <div>Employees</div>
+            </Route>
+          </Switch>
+        </Router>
+      </AppContext.Provider>
     </>
   );
 }
