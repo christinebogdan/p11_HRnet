@@ -2,13 +2,13 @@ export const initialState = {
   createEmployee: {
     firstName: "",
     lastName: "",
-    dateOfBirth: "",
     startDate: "",
+    department: "",
+    dateOfBirth: "",
     street: "",
     city: "",
     state: "",
     zipCode: "",
-    department: "",
   },
   employeeList: [],
 };
@@ -18,52 +18,65 @@ export const reducer = (state, action) => {
     case "first-name":
       return {
         ...state,
-        firstName: action.value,
+        createEmployee: { ...state.createEmployee, firstName: action.value },
       };
     case "last-name":
       return {
         ...state,
-        lastName: action.value,
+        createEmployee: { ...state.createEmployee, lastName: action.value },
       };
     case "date-of-birth":
       return {
         ...state,
-        dateOfBirth: action.value,
+        createEmployee: { ...state.createEmployee, dateOfBirth: action.value },
       };
     case "start-date":
       return {
         ...state,
-        startDate: action.value,
+        createEmployee: { ...state.createEmployee, startDate: action.value },
       };
     case "street":
       return {
         ...state,
-        street: action.value,
+        createEmployee: { ...state.createEmployee, street: action.value },
       };
     case "city":
       return {
         ...state,
-        city: action.value,
+        createEmployee: { ...state.createEmployee, city: action.value },
       };
     case "state":
       return {
         ...state,
-        state: action.value,
+        createEmployee: { ...state.createEmployee, state: action.value },
       };
     case "zip-code":
       return {
         ...state,
-        zipCode: action.value,
+        createEmployee: { ...state.createEmployee, zipCode: action.value },
       };
     case "department":
       return {
         ...state,
-        department: action.value,
+        createEmployee: { ...state.createEmployee, department: action.value },
       };
+    // why does this update only after clicking "Save" twice
     case "employeeList":
       return {
         ...state,
         employeeList: [...state.employeeList, action.value],
+        createEmployee: {
+          ...state.createEmployee,
+          firstName: "",
+          lastName: "",
+          dateOfBirth: "",
+          startDate: "",
+          street: "",
+          city: "",
+          state: "",
+          zipCode: "",
+          department: "",
+        },
       };
     default:
       return state;

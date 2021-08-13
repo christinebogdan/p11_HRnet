@@ -6,6 +6,8 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "datatables.net": "^1.10.25",
+    "datatables.net-dt": "^1.1.0",
     "jquery": "^3.6.0",
     "jquery-datetimepicker": "^2.5.21",
     "react": "^17.0.2",
@@ -38,5 +40,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "jsdoc": "^3.6.7"
   }
 }

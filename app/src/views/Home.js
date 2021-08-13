@@ -13,22 +13,36 @@ import {
   Select,
   Line,
 } from "../styles/home";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AppContext } from "../App";
 
 function Home(props) {
   const history = useHistory();
   const [state, dispatch] = useContext(AppContext);
 
+  useEffect(() => {
+    document.title = "HRnet";
+  });
+
+  /**
+   * Redirect user to page /employee-list
+   */
   const viewEmployees = () => {
     history.push("/employee-list");
   };
 
   const handleChange = (e) => {
     dispatch({ type: e.target.id, value: e.target.value });
+    console.log("on change", state);
   };
 
-  console.log(state);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = Object.values(state.createEmployee);
+    dispatch({ type: "employeeList", value: data });
+    console.log("on submit", state);
+  };
+
   return (
     <>
       <Container>
@@ -81,7 +95,7 @@ function Home(props) {
             <option>Human Resources</option>
             <option>Legal</option>
           </Select>
-          <Button onClick={() => console.log("hello")}>Save</Button>
+          <Button onClick={handleSubmit}>Save</Button>
         </Form>
       </FormContainer>
     </>

@@ -1,5 +1,6 @@
 import "./App.css";
 import Home from "./views/Home";
+import Employees from "./views/Employees";
 import React, { useEffect, useReducer } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
@@ -27,9 +28,6 @@ export const AppContext = React.createContext();
 function App() {
   // const [state, dispatch] = useReducer(reducer, initialState);
   const contextValue = useReducer(reducer, initialState);
-  useEffect(() => {
-    document.title = "HRnet";
-  });
 
   return (
     <>
@@ -40,8 +38,8 @@ function App() {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route path="employee-list">
-              <div>Employees</div>
+            <Route path="/employee-list">
+              <Employees />
             </Route>
           </Switch>
         </Router>

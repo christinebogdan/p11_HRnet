@@ -1,18 +1,15 @@
 import React, { useEffect } from "react";
 import { Input } from "../styles/home";
 import $ from "jquery";
+// why import the below as is?
 import "jquery-datetimepicker";
+// why do I have to explicitely import this?
+// how do I know what to import?
 import "jquery-datetimepicker/build/jquery.datetimepicker.min.css";
 
 function DatePickerInput(props) {
   const elmt = React.useRef();
   const id = props.id;
-  const e = {
-    target: {
-      id: undefined,
-      value: undefined,
-    },
-  };
 
   useEffect(() => {
     const $elmt = $(elmt.current);
@@ -20,11 +17,8 @@ function DatePickerInput(props) {
       timepicker: false,
       format: "m/d/Y",
       onChangeDateTime: function (dp, $input) {
-        // wieso nimmt er sich id nicht von $elmt.id?
-        // wieso erstellt er neues dateOfBirth key außerhalb von createEmployee Object?
-        e.target.id = id;
-        e.target.value = $input.val();
-        props.onChange(e);
+        // const e = { target: { id: id, value: $input.val() } };
+        props.onChange({ target: { id: id, value: $input.val() } });
       },
     });
   });
