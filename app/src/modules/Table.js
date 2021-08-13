@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import $ from "jquery";
-// import "datatables.net-dt/css/jquery.dataTables.min.css";
-// import "datatables.net-dt/js/jquery.dataTables.min.js";
+import "datatables.net-dt/css/jquery.dataTables.min.css";
 import "datatables.net";
 
 function Table(props) {
   const elmt = React.useRef();
 
+  /** After component has mounted, jQuery plugin generates table from employee data.
+   * Data is passed as prop into module.
+   */
   useEffect(() => {
     const $elmt = $(elmt.current);
     const data = props.employeeList;

@@ -1,5 +1,6 @@
 import { useHistory } from "react-router-dom";
 import DatePickerInput from "../modules/DatePickerInput";
+import SelectInputField from "../modules/SelectInputField";
 import {
   Container,
   H1,
@@ -20,6 +21,7 @@ function Home(props) {
   const history = useHistory();
   const [state, dispatch] = useContext(AppContext);
 
+  /** Updates the document.title to "HRnet" */
   useEffect(() => {
     document.title = "HRnet";
   });
@@ -31,11 +33,19 @@ function Home(props) {
     history.push("/employee-list");
   };
 
+  /**
+   * Updates state.createEmployee with every input change
+   * @param {Object} e - The event object
+   */
   const handleChange = (e) => {
     dispatch({ type: e.target.id, value: e.target.value });
     console.log("on change", state);
   };
 
+  /**
+   * Updates state.employeeList with new employee and resets form input values to empty strings
+   * @param {Object} e - The event object
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = Object.values(state.createEmployee);
@@ -43,6 +53,7 @@ function Home(props) {
     console.log("on submit", state);
   };
 
+  // wieso dreht sich onChange und value nicht im Kreis? https://reactgo.com/clear-input-field-value-react/
   return (
     <>
       <Container>
@@ -54,41 +65,76 @@ function Home(props) {
         <H2>CREATE EMPLOYEE</H2>
         <Form>
           <Label htmlFor="first-name">First Name</Label>
-          <Input type="text" id="first-name" onChange={handleChange} />
+          <Input
+            type="text"
+            id="first-name"
+            onChange={handleChange}
+            value={state.createEmployee.firstName}
+          />
 
           <Label htmlFor="date-of-birth">Last Name</Label>
-          <Input type="text" id="last-name" onChange={handleChange} />
+          <Input
+            type="text"
+            id="last-name"
+            onChange={handleChange}
+            value={state.createEmployee.lastName}
+          />
 
           <Label htmlFor="date-of-birth">Date of Birth</Label>
           <DatePickerInput
             id="date-of-birth"
             onChange={handleChange}
+            value={state.createEmployee.dateOfBirth}
           ></DatePickerInput>
 
           <Label htmlFor="start-date">Start Date</Label>
           <DatePickerInput
             id="start-date"
             onChange={handleChange}
+            value={state.createEmployee.startDate}
           ></DatePickerInput>
 
           <Fieldset>
             <legend>Address</legend>
 
             <Label htmlFor="street">Street</Label>
-            <Input id="street" type="text" onChange={handleChange} />
+            <Input
+              id="street"
+              type="text"
+              onChange={handleChange}
+              value={state.createEmployee.street}
+            />
 
             <Label htmlFor="city">City</Label>
-            <Input id="city" type="text" onChange={handleChange} />
+            <Input
+              id="city"
+              type="text"
+              onChange={handleChange}
+              value={state.createEmployee.city}
+            />
 
             <Label htmlFor="state">State</Label>
-            <select name="state" id="state" onChange={handleChange}></select>
+            <SelectInputField
+              onChange={handleChange}
+              value={state.createEmployee.state}
+            />
 
             <Label htmlFor="zip-code">Zip Code</Label>
-            <Input id="zip-code" type="number" onChange={handleChange} />
+            <Input
+              id="zip-code"
+              type="number"
+              onChange={handleChange}
+              value={state.createEmployee.zipCode}
+            />
           </Fieldset>
 
           <Label htmlFor="department">Department</Label>
-          <Select name="department" id="department" onChange={handleChange}>
+          <Select
+            name="department"
+            id="department"
+            onChange={handleChange}
+            value={state.createEmployee.department}
+          >
             <option>Sales</option>
             <option>Marketing</option>
             <option>Engineering</option>

@@ -1,7 +1,7 @@
 import "./App.css";
 import Home from "./views/Home";
 import Employees from "./views/Employees";
-import React, { useEffect, useReducer } from "react";
+import React, { useReducer } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import { reducer, initialState } from "./state/reducer";

@@ -11,6 +11,10 @@ function DatePickerInput(props) {
   const elmt = React.useRef();
   const id = props.id;
 
+  /** After component has mounted, jQuery plugin updates input field with datepicker functionality.
+   * OnChange method is passed as prop into module.
+   * Object with target.id and target.value values passed in as argument to replace missing event object.
+   */
   useEffect(() => {
     const $elmt = $(elmt.current);
     $elmt.datetimepicker({
@@ -23,7 +27,10 @@ function DatePickerInput(props) {
     });
   });
 
-  return <Input id={props.id} type="text" ref={elmt} />;
+  return (
+    // wieso funktioniert das hier mit readOnly? Nutzer kann trotzdem noch Datum verändern.
+    <Input id={props.id} type="text" ref={elmt} value={props.value} readOnly />
+  );
 }
 
 export default DatePickerInput;
