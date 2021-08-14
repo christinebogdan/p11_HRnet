@@ -142,7 +142,7 @@ function Home(props) {
           />
           <Button onClick={handleSubmit}>Save</Button>
           <ModalComponent show={state.modalShow}>
-            <p>Hello</p>
+            <p>Employee Created!</p>
           </ModalComponent>
         </Form>
       </FormContainer>

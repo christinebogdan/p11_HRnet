@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ModalContainer = styled.div`
+export const ModalBackdrop = styled.div`
   display: ${(props) => (props.show ? "block" : "none")};
   position: fixed;
   top: 0;
@@ -8,4 +8,29 @@ export const ModalContainer = styled.div`
   height: 100%;
   width: 100%;
   background-color: rgba(51, 66, 87, 0.5);
+`;
+
+export const ModalContainer = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: auto;
+  width: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  user-select: none;
+`;
+
+export const ModalCloseButton = styled.div`
+  width: 36px;
+  height: 36px;
+  background-color: rgb(84, 140, 168);
+  border-radius: 18px;
+  position: fixed;
+  top: -18px;
+  right: -18px;
 `;

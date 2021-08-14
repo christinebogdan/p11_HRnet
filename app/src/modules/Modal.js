@@ -1,18 +1,29 @@
-import { ModalContainer } from "../styles/modal";
+import {
+  ModalBackdrop,
+  ModalContainer,
+  ModalCloseButton,
+} from "../styles/modal";
 import { useContext } from "react";
 import { AppContext } from "../App";
 
 function ModalComponent(props) {
-  const [state, dispatch] = useContext(AppContext);
+  const dispatch = useContext(AppContext)[1];
 
   const closeModal = () => {
     dispatch({ type: "toggleModal" });
   };
   return (
     // <div className={props.show ? "modal show-modal" : "modal hide-modal"}></div>
-    <ModalContainer show={props.show} onClick={closeModal}>
-      {props.children}
-    </ModalContainer>
+    <ModalBackdrop show={props.show} onClick={closeModal}>
+      <ModalContainer
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        {props.children}
+        <ModalCloseButton onClick={closeModal} />
+      </ModalContainer>
+    </ModalBackdrop>
   );
 }
 
