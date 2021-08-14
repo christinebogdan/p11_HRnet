@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { states } from "../helper/states";
 import $ from "jquery";
 // import "jquery-ui/themes/base/core.css";
 // import "jquery-ui/themes/base/theme.css";
@@ -22,21 +21,14 @@ function SelectInputField(props) {
     const $elmt = $(elmt.current);
     $elmt.selectmenu({
       change: function (event, ui) {
-        props.onChange({ target: { id: "state", value: ui.item.value } });
+        props.onChange({ target: { id: props.id, value: ui.item.value } });
       },
     });
   });
 
   return (
-    <select
-      name="state"
-      id="state"
-      value={props.value}
-      ref={elmt}
-      style={{ width: "200px" }}
-      readOnly
-    >
-      {states.map((state, index) => {
+    <select name="state" id={props.id} value={props.value} ref={elmt} readOnly>
+      {props.data.map((state, index) => {
         return (
           <option value={state.name} text={state.name} key={index}>
             {state.name}
