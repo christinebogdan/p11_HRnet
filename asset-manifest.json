@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/p11_HRnet/static/css/main.ea1455b2.chunk.css",
+    "main.js": "/p11_HRnet/static/js/main.adc7129c.chunk.js",
+    "main.js.map": "/p11_HRnet/static/js/main.adc7129c.chunk.js.map",
+    "runtime-main.js": "/p11_HRnet/static/js/runtime-main.97b7d07d.js",
+    "runtime-main.js.map": "/p11_HRnet/static/js/runtime-main.97b7d07d.js.map",
+    "static/css/2.ea6079eb.chunk.css": "/p11_HRnet/static/css/2.ea6079eb.chunk.css",
+    "static/js/2.a68e0e88.chunk.js": "/p11_HRnet/static/js/2.a68e0e88.chunk.js",
+    "static/js/2.a68e0e88.chunk.js.map": "/p11_HRnet/static/js/2.a68e0e88.chunk.js.map",
+    "static/js/3.4088246e.chunk.js": "/p11_HRnet/static/js/3.4088246e.chunk.js",
+    "static/js/3.4088246e.chunk.js.map": "/p11_HRnet/static/js/3.4088246e.chunk.js.map",
+    "index.html": "/p11_HRnet/index.html",
+    "static/css/2.ea6079eb.chunk.css.map": "/p11_HRnet/static/css/2.ea6079eb.chunk.css.map",
+    "static/css/main.ea1455b2.chunk.css.map": "/p11_HRnet/static/css/main.ea1455b2.chunk.css.map",
+    "static/js/2.a68e0e88.chunk.js.LICENSE.txt": "/p11_HRnet/static/js/2.a68e0e88.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.97b7d07d.js",
+    "static/css/2.ea6079eb.chunk.css",
+    "static/js/2.a68e0e88.chunk.js",
+    "static/css/main.ea1455b2.chunk.css",
+    "static/js/main.adc7129c.chunk.js"
+  ]
+}
