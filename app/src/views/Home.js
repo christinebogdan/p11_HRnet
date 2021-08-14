@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom";
 import DatePickerInput from "../modules/DatePickerInput";
 import SelectInputField from "../modules/SelectInputField";
+import ModalComponent from "../modules/Modal";
 import {
   Container,
   H1,
@@ -11,11 +12,12 @@ import {
   Label,
   Input,
   Fieldset,
-  Select,
   Line,
 } from "../styles/home";
 import { useContext, useEffect } from "react";
 import { AppContext } from "../App";
+import { states } from "../helper/states";
+import { departments } from "../helper/departments";
 
 function Home(props) {
   const history = useHistory();
@@ -50,6 +52,7 @@ function Home(props) {
     e.preventDefault();
     const data = Object.values(state.createEmployee);
     dispatch({ type: "employeeList", value: data });
+    dispatch({ type: "toggleModal" });
     console.log("on submit", state);
   };
 
@@ -117,6 +120,8 @@ function Home(props) {
             <SelectInputField
               onChange={handleChange}
               value={state.createEmployee.state}
+              id="state"
+              data={states}
             />
 
             <Label htmlFor="zip-code">Zip Code</Label>
@@ -129,19 +134,16 @@ function Home(props) {
           </Fieldset>
 
           <Label htmlFor="department">Department</Label>
-          <Select
-            name="department"
-            id="department"
+          <SelectInputField
             onChange={handleChange}
             value={state.createEmployee.department}
-          >
-            <option>Sales</option>
-            <option>Marketing</option>
-            <option>Engineering</option>
-            <option>Human Resources</option>
-            <option>Legal</option>
-          </Select>
+            id="department"
+            data={departments}
+          />
           <Button onClick={handleSubmit}>Save</Button>
+          <ModalComponent show={state.modalShow}>
+            <p>Hello</p>
+          </ModalComponent>
         </Form>
       </FormContainer>
     </>

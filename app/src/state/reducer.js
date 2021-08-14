@@ -11,6 +11,7 @@ export const initialState = {
     zipCode: "",
   },
   employeeList: [],
+  modalShow: false,
 };
 
 export const reducer = (state, action) => {
@@ -78,6 +79,8 @@ export const reducer = (state, action) => {
           department: "",
         },
       };
+    case "toggleModal":
+      return { ...state, modalShow: !state.modalShow };
     default:
       return state;
   }
