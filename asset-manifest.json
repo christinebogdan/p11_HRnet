@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/p11_HRnet/static/css/main.ea1455b2.chunk.css",
-    "main.js": "/p11_HRnet/static/js/main.d481989c.chunk.js",
-    "main.js.map": "/p11_HRnet/static/js/main.d481989c.chunk.js.map",
+    "main.js": "/p11_HRnet/static/js/main.a7d695d3.chunk.js",
+    "main.js.map": "/p11_HRnet/static/js/main.a7d695d3.chunk.js.map",
     "runtime-main.js": "/p11_HRnet/static/js/runtime-main.97b7d07d.js",
     "runtime-main.js.map": "/p11_HRnet/static/js/runtime-main.97b7d07d.js.map",
     "static/css/2.ea6079eb.chunk.css": "/p11_HRnet/static/css/2.ea6079eb.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.ea6079eb.chunk.css",
     "static/js/2.a68e0e88.chunk.js",
     "static/css/main.ea1455b2.chunk.css",
-    "static/js/main.d481989c.chunk.js"
+    "static/js/main.a7d695d3.chunk.js"
   ]
 }
