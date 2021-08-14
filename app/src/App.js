@@ -36,7 +36,7 @@ function App() {
     <>
       <AppContext.Provider value={contextValue}>
         <GlobalStyle />
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <Switch>
             <Route exact path="/">
               <Home />
