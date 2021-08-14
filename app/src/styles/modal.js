@@ -33,4 +33,12 @@ export const ModalCloseButton = styled.div`
   position: fixed;
   top: -18px;
   right: -18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 25px;
+  }
 `;
+
+// set keyboard trap for modal

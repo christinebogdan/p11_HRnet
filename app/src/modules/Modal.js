@@ -5,15 +5,31 @@ import {
 } from "../styles/modal";
 import { useContext } from "react";
 import { AppContext } from "../App";
+import React, { useEffect } from "react";
 
-function ModalComponent(props) {
+function Modal(props) {
   const dispatch = useContext(AppContext)[1];
+  // why can't I do this?
+  // const { current: closeButton } = React.useRef();
 
-  const closeModal = () => {
-    dispatch({ type: "toggleModal" });
+  const closeButton = React.useRef(null);
+
+  useEffect(() => {
+    if (props.show) {
+      closeButton.current.focus();
+    }
+  });
+
+  // why does e.key === "Escape" not work?
+  const closeModal = (e) => {
+    e.type === "click" || e.key === "Enter"
+      ? dispatch({ type: "toggleModal" })
+      : console.log("no");
+
+    // dispatch({ type: "toggleModal" });
   };
+
   return (
-    // <div className={props.show ? "modal show-modal" : "modal hide-modal"}></div>
     <ModalBackdrop show={props.show} onClick={closeModal}>
       <ModalContainer
         onClick={(e) => {
@@ -21,10 +37,17 @@ function ModalComponent(props) {
         }}
       >
         {props.children}
-        <ModalCloseButton onClick={closeModal} />
+        <ModalCloseButton
+          onClick={closeModal}
+          onKeyPress={closeModal}
+          ref={closeButton}
+          tabIndex="-1"
+        >
+          <p>+</p>
+        </ModalCloseButton>
       </ModalContainer>
     </ModalBackdrop>
   );
 }
 
-export default ModalComponent;
+export default Modal;

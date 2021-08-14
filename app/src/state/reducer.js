@@ -10,7 +10,8 @@ export const initialState = {
     state: "Alabama",
     zipCode: "",
   },
-  employeeList: [],
+  // local Storage liest immer mit einem Save versetzt aus.
+  employeeList: JSON.parse(localStorage.getItem("employees")) || [],
   modalShow: false,
 };
 
@@ -74,9 +75,9 @@ export const reducer = (state, action) => {
           startDate: "",
           street: "",
           city: "",
-          state: "",
+          state: "Alabama",
           zipCode: "",
-          department: "",
+          department: "Sales",
         },
       };
     case "toggleModal":

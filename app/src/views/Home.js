@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
 import DatePickerInput from "../modules/DatePickerInput";
 import SelectInputField from "../modules/SelectInputField";
-import ModalComponent from "../modules/Modal";
+import Modal from "../modules/Modal";
 import {
   Container,
   H1,
@@ -35,6 +35,8 @@ function Home(props) {
     history.push("/employee-list");
   };
 
+  // wieso hinkt der immer eins hinter dem input change hinterher? Aber Input in Table ist komplett.
+  // genauso wie push zum localSotrage
   /**
    * Updates state.createEmployee with every input change
    * @param {Object} e - The event object
@@ -53,7 +55,8 @@ function Home(props) {
     const data = Object.values(state.createEmployee);
     dispatch({ type: "employeeList", value: data });
     dispatch({ type: "toggleModal" });
-    console.log("on submit", state);
+    localStorage.setItem("employees", JSON.stringify(state.employeeList));
+    console.log("on submit", state.employeeList);
   };
 
   // wieso dreht sich onChange und value nicht im Kreis? https://reactgo.com/clear-input-field-value-react/
@@ -141,9 +144,9 @@ function Home(props) {
             data={departments}
           />
           <Button onClick={handleSubmit}>Save</Button>
-          <ModalComponent show={state.modalShow}>
+          <Modal show={state.modalShow}>
             <p>Employee Created!</p>
-          </ModalComponent>
+          </Modal>
         </Form>
       </FormContainer>
     </>
