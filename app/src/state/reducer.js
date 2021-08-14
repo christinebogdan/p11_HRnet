@@ -73,9 +73,9 @@ export const reducer = (state, action) => {
           startDate: "",
           street: "",
           city: "",
-          state: "",
+          state: "Alabama",
           zipCode: "",
-          department: "",
+          department: "Sales",
         },
       };
     default:
