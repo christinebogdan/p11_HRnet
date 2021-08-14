@@ -119,6 +119,7 @@ function Home(props) {
               onChange={handleChange}
               value={state.createEmployee.state}
               data={states}
+              id="state"
             />
 
             <Label htmlFor="zip-code">Zip Code</Label>
@@ -135,6 +136,7 @@ function Home(props) {
             onChange={handleChange}
             value={state.createEmployee.department}
             data={departments}
+            id="department"
           />
           <Button onClick={handleSubmit}>Save</Button>
         </Form>
