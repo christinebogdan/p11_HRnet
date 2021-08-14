@@ -11,7 +11,6 @@ import {
   Label,
   Input,
   Fieldset,
-  Select,
   Line,
 } from "../styles/home";
 import { useContext, useEffect } from "react";
