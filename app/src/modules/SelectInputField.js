@@ -21,17 +21,24 @@ function SelectInputField(props) {
     const $elmt = $(elmt.current);
     $elmt.selectmenu({
       change: function (event, ui) {
+        console.log(ui.item.value);
         props.onChange({ target: { id: props.id, value: ui.item.value } });
       },
     });
   });
 
   return (
-    <select name="state" id={props.id} value={props.value} ref={elmt} readOnly>
-      {props.data.map((state, index) => {
+    <select
+      name={props.id}
+      id={props.id}
+      value={props.value}
+      ref={elmt}
+      readOnly
+    >
+      {props.data.map((element, index) => {
         return (
-          <option value={state.name} text={state.name} key={index}>
-            {state.name}
+          <option value={element.name} text={element.name} key={index}>
+            {element.name}
           </option>
         );
       })}

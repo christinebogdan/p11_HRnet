@@ -16,6 +16,8 @@ import {
 } from "../styles/home";
 import { useContext, useEffect } from "react";
 import { AppContext } from "../App";
+import { departments } from "../helper/departments";
+import { states } from "../helper/states";
 
 function Home(props) {
   const history = useHistory();
@@ -117,6 +119,7 @@ function Home(props) {
             <SelectInputField
               onChange={handleChange}
               value={state.createEmployee.state}
+              data={states}
             />
 
             <Label htmlFor="zip-code">Zip Code</Label>
@@ -129,18 +132,11 @@ function Home(props) {
           </Fieldset>
 
           <Label htmlFor="department">Department</Label>
-          <Select
-            name="department"
-            id="department"
+          <SelectInputField
             onChange={handleChange}
             value={state.createEmployee.department}
-          >
-            <option>Sales</option>
-            <option>Marketing</option>
-            <option>Engineering</option>
-            <option>Human Resources</option>
-            <option>Legal</option>
-          </Select>
+            data={departments}
+          />
           <Button onClick={handleSubmit}>Save</Button>
         </Form>
       </FormContainer>
