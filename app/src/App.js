@@ -15,6 +15,7 @@ const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     display: flex;
     justify-content: center;
+    box-sizing: border-box;
   }
   code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -22,6 +23,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   th {
+    font-size: 15px;
+  }
+  td {
     font-size: 15px;
   }
 `;
