@@ -26,6 +26,7 @@ export const ModalContainer = styled.div`
 `;
 
 export const ModalCloseButton = styled.div`
+ display: ${(props) => (props.showClose ? "flex" : "none")};
   width: 36px;
   height: 36px;
   background-color: rgb(84, 140, 168);
@@ -33,12 +34,21 @@ export const ModalCloseButton = styled.div`
   position: fixed;
   top: -18px;
   right: -18px;
-  display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   font-size: 25px;
+  transform: rotate(45deg)
   }
 `;
 
-// set keyboard trap for modal
+export const ModalTextButton = styled.button`
+  background-color: rgb(84, 140, 168);
+  color: white;
+  font-size: 15px;
+  border: none;
+  border-radius: 15px;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-top: 30px;
+`;

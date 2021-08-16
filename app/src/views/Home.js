@@ -14,7 +14,7 @@ import {
   Fieldset,
   Line,
 } from "../styles/home";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../App";
 import { states } from "../helper/states";
 import { departments } from "../helper/departments";
@@ -22,6 +22,8 @@ import { departments } from "../helper/departments";
 function Home(props) {
   const history = useHistory();
   const [state, dispatch] = useContext(AppContext);
+
+  const [showModal, setShowModal] = useState(false);
 
   /** Updates the document.title to "HRnet" */
   useEffect(() => {
@@ -43,7 +45,6 @@ function Home(props) {
    */
   const handleChange = (e) => {
     dispatch({ type: e.target.id, value: e.target.value });
-    console.log("on change", state);
   };
 
   /**
@@ -53,13 +54,12 @@ function Home(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = Object.values(state.createEmployee);
-    dispatch({ type: "employeeList", value: data });
-    dispatch({ type: "toggleModal" });
-    localStorage.setItem("employees", JSON.stringify(state.employeeList));
-    console.log("on submit", state.employeeList);
+    const newEmployeeList = [...state.employeeList, data];
+    dispatch({ type: "employeeList", value: newEmployeeList });
+    setShowModal(!showModal);
+    localStorage.setItem("employees", JSON.stringify(newEmployeeList));
   };
 
-  // wieso dreht sich onChange und value nicht im Kreis? https://reactgo.com/clear-input-field-value-react/
   return (
     <>
       <Container>
@@ -144,7 +144,7 @@ function Home(props) {
             data={departments}
           />
           <Button onClick={handleSubmit}>Save</Button>
-          <Modal show={state.modalShow}>
+          <Modal show={showModal} toggle={setShowModal}>
             <p>Employee Created!</p>
           </Modal>
         </Form>

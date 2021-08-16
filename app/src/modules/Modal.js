@@ -3,47 +3,63 @@ import {
   ModalContainer,
   ModalCloseButton,
 } from "../styles/modal";
-import { useContext } from "react";
-import { AppContext } from "../App";
 import React, { useEffect } from "react";
 
-function Modal(props) {
-  const dispatch = useContext(AppContext)[1];
-  // why can't I do this?
-  // const { current: closeButton } = React.useRef();
-
-  const closeButton = React.useRef(null);
-
+function Modal({
+  showClose = true,
+  escapeClose = true,
+  clickClose = true,
+  closeText = true,
+  show,
+  toggle,
+  children,
+}) {
   useEffect(() => {
-    if (props.show) {
-      closeButton.current.focus();
+    if (show) {
+      block();
     }
   });
 
-  // why does e.key === "Escape" not work?
-  const closeModal = (e) => {
-    e.type === "click" || e.key === "Enter"
-      ? dispatch({ type: "toggleModal" })
-      : console.log("no");
+  const block = () => {
+    document.body.classList.add("modal-open");
+  };
 
-    // dispatch({ type: "toggleModal" });
+  const unblock = () => {
+    document.body.classList.remove("modal-open");
+  };
+  // why does e.key === "Escape" not work?
+  const close = (e) => {
+    console.log(e);
+    if (clickClose && e.type === "click") {
+      toggle();
+    }
+    if (e.type === "keydown" && (e.key === "Enter" || e.key === "Escape")) {
+      console.log(e);
+      toggle();
+    }
+    unblock();
   };
 
   return (
-    <ModalBackdrop show={props.show} onClick={closeModal}>
+    <ModalBackdrop show={show} onClick={close} onKeyDown={close}>
       <ModalContainer
         onClick={(e) => {
           e.stopPropagation();
         }}
       >
-        {props.children}
+        {children}
         <ModalCloseButton
-          onClick={closeModal}
-          onKeyPress={closeModal}
-          ref={closeButton}
-          tabIndex="-1"
+          onClick={close}
+          onKeyDown={close}
+          showClose={showClose}
         >
-          <p>+</p>
+          <span
+            style={{
+              height: "100%",
+            }}
+          >
+            +
+          </span>
         </ModalCloseButton>
       </ModalContainer>
     </ModalBackdrop>
@@ -51,3 +67,7 @@ function Modal(props) {
 }
 
 export default Modal;
+
+// const dispatch = useContext(AppContext)[1];
+// why can't I do this?
+// const { current: closeButton } = React.useRef();

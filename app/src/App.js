@@ -28,6 +28,10 @@ const GlobalStyle = createGlobalStyle`
   td {
     font-size: 15px;
   }
+
+  .modal-open {
+    overflow: hidden;
+  }
 `;
 
 export const AppContext = React.createContext();

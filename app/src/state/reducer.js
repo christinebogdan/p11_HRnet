@@ -10,9 +10,7 @@ export const initialState = {
     state: "Alabama",
     zipCode: "",
   },
-  // local Storage liest immer mit einem Save versetzt aus.
   employeeList: JSON.parse(localStorage.getItem("employees")) || [],
-  modalShow: false,
 };
 
 export const reducer = (state, action) => {
@@ -62,11 +60,10 @@ export const reducer = (state, action) => {
         ...state,
         createEmployee: { ...state.createEmployee, department: action.value },
       };
-    // why does this update only after clicking "Save" twice
-    case "employeeList":
+    case "employeeList": // HIER: neue employee list in var speichern, var in localstorage ablegen, var in state einfügen
       return {
         ...state,
-        employeeList: [...state.employeeList, action.value],
+        employeeList: action.value,
         createEmployee: {
           ...state.createEmployee,
           firstName: "",
@@ -80,8 +77,6 @@ export const reducer = (state, action) => {
           department: "Sales",
         },
       };
-    case "toggleModal":
-      return { ...state, modalShow: !state.modalShow };
     default:
       return state;
   }
