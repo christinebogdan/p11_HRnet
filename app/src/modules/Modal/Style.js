@@ -1,6 +1,4 @@
-// import { css } from "jquery";
 import styled, { keyframes, css } from "styled-components";
-
 export const ModalBackdrop = styled.div`
   display: ${(props) => (props.show ? "block" : "none")};
   position: fixed;

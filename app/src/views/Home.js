@@ -167,3 +167,7 @@ function Home(props) {
 }
 
 export default Home;
+
+// const dispatch = useContext(AppContext)[1];
+// why can't I do this?
+// const { current: closeButton } = React.useRef();
