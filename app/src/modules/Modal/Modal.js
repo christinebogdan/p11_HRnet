@@ -2,38 +2,53 @@ import {
   ModalBackdrop,
   ModalContainer,
   ModalCloseButton,
-} from "../styles/modal";
+  ModalTextButton,
+} from "./Style";
 import React, { useEffect } from "react";
+import { css } from "styled-components";
 
 function Modal({
   showClose = true,
   escapeClose = true,
   clickClose = true,
-  closeText = true,
+  closeText = false,
+  animation = false,
+  modalCloseButtonStyle,
+  modalTextButtonStyle,
+  modalContainerStyle,
+  modalBackdropStyle,
   show,
   toggle,
   children,
 }) {
+  const modalCloseButton = React.useRef(null);
   useEffect(() => {
     if (show) {
+      modalCloseButton.current.focus();
       block();
+      console.log(css`
+        ${modalCloseButtonStyle}
+      `);
     }
   });
 
   const block = () => {
-    document.body.classList.add("modal-open");
+    document.body.style.overflow = "hidden";
   };
 
   const unblock = () => {
-    document.body.classList.remove("modal-open");
+    document.body.style.overflow = "visible";
   };
   // why does e.key === "Escape" not work?
   const close = (e) => {
-    console.log(e);
+    e.preventDefault();
     if (clickClose && e.type === "click") {
       toggle();
     }
-    if (e.type === "keydown" && (e.key === "Enter" || e.key === "Escape")) {
+    if (
+      e.type === "keydown" &&
+      (e.key === "Enter" || (escapeClose && e.key === "Escape"))
+    ) {
       console.log(e);
       toggle();
     }
@@ -41,17 +56,35 @@ function Modal({
   };
 
   return (
-    <ModalBackdrop show={show} onClick={close} onKeyDown={close}>
+    <ModalBackdrop
+      show={show}
+      onClick={close}
+      onKeyDown={close}
+      customStyle={modalBackdropStyle}
+    >
       <ModalContainer
         onClick={(e) => {
           e.stopPropagation();
         }}
+        closeText={closeText}
+        animation={animation}
+        customStyle={modalContainerStyle}
       >
         {children}
+        <ModalTextButton
+          closeText={closeText}
+          onClick={close}
+          customStyle={modalTextButtonStyle}
+        >
+          {closeText}
+        </ModalTextButton>
         <ModalCloseButton
+          ref={modalCloseButton}
           onClick={close}
           onKeyDown={close}
           showClose={showClose}
+          tabIndex="-1"
+          customStyle={modalCloseButtonStyle}
         >
           <span
             style={{
