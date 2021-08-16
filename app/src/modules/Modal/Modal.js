@@ -5,7 +5,6 @@ import {
   ModalTextButton,
 } from "./Style";
 import React, { useEffect } from "react";
-import { css } from "styled-components";
 
 function Modal({
   showClose = true,
@@ -26,9 +25,6 @@ function Modal({
     if (show) {
       modalCloseButton.current.focus();
       block();
-      console.log(css`
-        ${modalCloseButtonStyle}
-      `);
     }
   });
 
