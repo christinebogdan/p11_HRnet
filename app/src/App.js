@@ -23,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   th {
-    font-size: 15px;
+    font-size: 14px;
   }
   td {
     font-size: 15px;

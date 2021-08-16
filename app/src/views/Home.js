@@ -152,10 +152,15 @@ function Home(props) {
             animation={true}
             show={showModal}
             toggle={setShowModal}
-            closeText="Save me baby"
             modalBackdropStyle={``}
+            closeText={{
+              text: "View Current Employees",
+              eventHandling: viewEmployees,
+            }}
+            // why does height not work and messes up flex?
             modalContainerStyle={``}
             modalCloseButtonStyle={``}
+            // why does height not work for text button?
             modalTextButtonStyle={``}
           >
             <p>Employee Created!</p>

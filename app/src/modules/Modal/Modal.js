@@ -35,7 +35,6 @@ function Modal({
   const unblock = () => {
     document.body.style.overflow = "visible";
   };
-  // why does e.key === "Escape" not work?
   const close = (e) => {
     e.preventDefault();
     if (clickClose && e.type === "click") {
@@ -69,10 +68,17 @@ function Modal({
         {children}
         <ModalTextButton
           closeText={closeText}
-          onClick={close}
+          onClick={
+            closeText.eventHandling
+              ? () => {
+                  unblock();
+                  closeText.eventHandling();
+                }
+              : close
+          }
           customStyle={modalTextButtonStyle}
         >
-          {closeText}
+          {closeText.text}
         </ModalTextButton>
         <ModalCloseButton
           ref={modalCloseButton}
@@ -96,7 +102,3 @@ function Modal({
 }
 
 export default Modal;
-
-// const dispatch = useContext(AppContext)[1];
-// why can't I do this?
-// const { current: closeButton } = React.useRef();
