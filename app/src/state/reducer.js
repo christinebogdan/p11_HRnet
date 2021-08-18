@@ -10,7 +10,7 @@ export const initialState = {
     state: "Alabama",
     zipCode: "",
   },
-  employeeList: JSON.parse(localStorage.getItem("employees")) || [],
+  employeeList: [],
 };
 
 export const reducer = (state, action) => {
