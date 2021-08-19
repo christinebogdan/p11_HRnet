@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
 import DatePickerInput from "../modules/DatePickerInput";
 import SelectInputField from "../modules/SelectInputField";
-import Modal from "@christinebogdan/react-modal-plugin";
+import Modal from "@christinebogdan/modal-plugin-react";
 import {
   Container,
   H1,
