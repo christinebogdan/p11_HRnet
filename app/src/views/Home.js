@@ -1,8 +1,7 @@
 import { useHistory } from "react-router-dom";
 import DatePickerInput from "../modules/DatePickerInput";
 import SelectInputField from "../modules/SelectInputField";
-import Modal from "@christinebogdan/react-modal-plugin1";
-// import Modal from "../modules/Modal/Modal";
+import Modal from "@christinebogdan/react-modal-plugin";
 import {
   Container,
   H1,
@@ -155,8 +154,6 @@ function Home(props) {
               eventHandling: viewEmployees,
             }}
             blockScrolling={false}
-            // why does height not work and messes up flex?
-            // why does height not work for text button?
           >
             <p>Employee Created!</p>
           </Modal>
@@ -167,7 +164,3 @@ function Home(props) {
 }
 
 export default Home;
-
-// const dispatch = useContext(AppContext)[1];
-// why can't I do this?
-// const { current: closeButton } = React.useRef();

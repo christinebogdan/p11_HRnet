@@ -34,7 +34,6 @@ const GlobalStyle = createGlobalStyle`
 export const AppContext = React.createContext();
 
 function App() {
-  // const [state, dispatch] = useReducer(reducer, initialState);
   const contextValue = useReducer(reducer, initialState);
 
   return (
