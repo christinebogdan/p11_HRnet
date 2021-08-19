@@ -1,7 +1,8 @@
 import { useHistory } from "react-router-dom";
 import DatePickerInput from "../modules/DatePickerInput";
 import SelectInputField from "../modules/SelectInputField";
-import Modal from "../modules/Modal/Modal";
+import Modal from "@christinebogdan/react-modal-plugin1";
+// import Modal from "../modules/Modal/Modal";
 import {
   Container,
   H1,
@@ -37,8 +38,6 @@ function Home(props) {
     history.push("/employee-list");
   };
 
-  // wieso hinkt der immer eins hinter dem input change hinterher? Aber Input in Table ist komplett.
-  // genauso wie push zum localSotrage
   /**
    * Updates state.createEmployee with every input change
    * @param {Object} e - The event object
@@ -61,7 +60,6 @@ function Home(props) {
     const newEmployeeList = [...state.employeeList, data];
     dispatch({ type: "employeeList", value: newEmployeeList });
     setShowModal(!showModal);
-    localStorage.setItem("employees", JSON.stringify(newEmployeeList));
   };
 
   return (
@@ -152,16 +150,13 @@ function Home(props) {
             animation={true}
             show={showModal}
             toggle={setShowModal}
-            modalBackdropStyle={``}
             closeText={{
               text: "View Current Employees",
               eventHandling: viewEmployees,
             }}
+            blockScrolling={false}
             // why does height not work and messes up flex?
-            modalContainerStyle={``}
-            modalCloseButtonStyle={``}
             // why does height not work for text button?
-            modalTextButtonStyle={``}
           >
             <p>Employee Created!</p>
           </Modal>

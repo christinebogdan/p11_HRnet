@@ -12,10 +12,11 @@ function Modal({
   clickClose = true,
   closeText = false,
   animation = false,
-  modalCloseButtonStyle,
-  modalTextButtonStyle,
-  modalContainerStyle,
-  modalBackdropStyle,
+  blockScrolling = true,
+  modalCloseButtonStyle = "",
+  modalTextButtonStyle = "",
+  modalContainerStyle = "",
+  modalBackdropStyle = "",
   show,
   toggle,
   children,
@@ -24,7 +25,7 @@ function Modal({
   useEffect(() => {
     if (show) {
       modalCloseButton.current.focus();
-      block();
+      if (blockScrolling) block();
     }
   });
 
@@ -47,7 +48,7 @@ function Modal({
       console.log(e);
       toggle();
     }
-    unblock();
+    if (blockScrolling) unblock();
   };
 
   return (
@@ -71,7 +72,7 @@ function Modal({
           onClick={
             closeText.eventHandling
               ? () => {
-                  unblock();
+                  if (blockScrolling) unblock();
                   closeText.eventHandling();
                 }
               : close
