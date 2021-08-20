@@ -19,6 +19,7 @@ import { AppContext } from "../App";
 import { states } from "../helper/states";
 import { departments } from "../helper/departments";
 
+
 function Home(props) {
   const history = useHistory();
   const [state, dispatch] = useContext(AppContext);

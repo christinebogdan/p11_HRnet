@@ -2,6 +2,7 @@
   "name": "hr-net",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://christinebogdan.github.io/p11_HRnet",
   "dependencies": {
     "@christinebogdan/modal-plugin-react": "^0.1.11",
     "@testing-library/jest-dom": "^5.14.1",
@@ -24,7 +25,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
