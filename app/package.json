@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://christinebogdan.github.io/p11_HRnet",
   "dependencies": {
+    "@christinebogdan/modal-plugin-react": "^0.1.11",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
