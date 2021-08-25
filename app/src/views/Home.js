@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom";
 import DatePickerInput from "../modules/DatePickerInput";
 import SelectInputField from "../modules/SelectInputField";
+import Modal from "@christinebogdan/modal-plugin-react";
 import {
   Container,
   H1,
@@ -13,14 +14,17 @@ import {
   Fieldset,
   Line,
 } from "../styles/home";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../App";
-import { departments } from "../helper/departments";
 import { states } from "../helper/states";
+import { departments } from "../helper/departments";
+
 
 function Home(props) {
   const history = useHistory();
   const [state, dispatch] = useContext(AppContext);
+
+  const [showModal, setShowModal] = useState(false);
 
   /** Updates the document.title to "HRnet" */
   useEffect(() => {
@@ -40,21 +44,24 @@ function Home(props) {
    */
   const handleChange = (e) => {
     dispatch({ type: e.target.id, value: e.target.value });
-    console.log("on change", state);
   };
 
   /**
-   * Updates state.employeeList with new employee and resets form input values to empty strings
+   * Creates new updated employee list.
+   * Updates state.employeeList with new employee list.
+   * Resets form input values to empty strings.
+   * Changes showModal state to "true", to display modal.
+   * Updates local storage with new list of employees
    * @param {Object} e - The event object
    */
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = Object.values(state.createEmployee);
-    dispatch({ type: "employeeList", value: data });
-    console.log("on submit", state);
+    const newEmployeeList = [...state.employeeList, data];
+    dispatch({ type: "employeeList", value: newEmployeeList });
+    setShowModal(!showModal);
   };
 
-  // wieso dreht sich onChange und value nicht im Kreis? https://reactgo.com/clear-input-field-value-react/
   return (
     <>
       <Container>
@@ -118,8 +125,8 @@ function Home(props) {
             <SelectInputField
               onChange={handleChange}
               value={state.createEmployee.state}
-              data={states}
               id="state"
+              data={states}
             />
 
             <Label htmlFor="zip-code">Zip Code</Label>
@@ -135,10 +142,22 @@ function Home(props) {
           <SelectInputField
             onChange={handleChange}
             value={state.createEmployee.department}
-            data={departments}
             id="department"
+            data={departments}
           />
           <Button onClick={handleSubmit}>Save</Button>
+          <Modal
+            animation={true}
+            show={showModal}
+            toggle={setShowModal}
+            closeText={{
+              text: "View Current Employees",
+              eventHandling: viewEmployees,
+            }}
+            blockScrolling={false}
+          >
+            <p>Employee Created!</p>
+          </Modal>
         </Form>
       </FormContainer>
     </>
@@ -146,32 +165,3 @@ function Home(props) {
 }
 
 export default Home;
-
-// manage State to save input values
-// const saveEmployee = () => {
-//   const firstName = document.getElementById("first-name");
-//   const lastName = document.getElementById("last-name");
-//   const dateOfBirth = document.getElementById("date-of-birth");
-//   const startDate = document.getElementById("start-date");
-//   const department = document.getElementById("department");
-//   const street = document.getElementById("street");
-//   const city = document.getElementById("city");
-//   const state = document.getElementById("state");
-//   const zipCode = document.getElementById("zip-code");
-
-//   const employees = JSON.parse(localStorage.getItem("employees")) || [];
-//   const employee = {
-//     firstName: firstName.value,
-//     lastName: lastName.value,
-//     dateOfBirth: dateOfBirth.value,
-//     startDate: startDate.value,
-//     department: department.value,
-//     street: street.value,
-//     city: city.value,
-//     state: state.value,
-//     zipCode: zipCode.value,
-//   };
-//   employees.push(employee);
-//   localStorage.setItem("employees", JSON.stringify(employees));
-//   $("#confirmation").modal();
-// };

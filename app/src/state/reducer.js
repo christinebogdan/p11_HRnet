@@ -60,11 +60,10 @@ export const reducer = (state, action) => {
         ...state,
         createEmployee: { ...state.createEmployee, department: action.value },
       };
-    // why does this update only after clicking "Save" twice
-    case "employeeList":
+    case "employeeList": // HIER: neue employee list in var speichern, var in localstorage ablegen, var in state einfügen
       return {
         ...state,
-        employeeList: [...state.employeeList, action.value],
+        employeeList: action.value,
         createEmployee: {
           ...state.createEmployee,
           firstName: "",
