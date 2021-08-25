@@ -1,33 +1,8 @@
 import { useHistory } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import React, { Suspense, useContext, useEffect } from "react";
 import { AppContext } from "../App";
-import styled from "styled-components";
-import Table from "../modules/Table";
-
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const H1 = styled.h1`
-  color: rgb(51, 66, 87);
-  margin-bottom: 0;
-  margin-top: 30px;
-  margin-bottom: 30px;
-`;
-
-export const Button = styled.button`
-  background-color: rgb(84, 140, 168);
-  color: white;
-  font-size: 15px;
-  border: none;
-  border-radius: 15px;
-  padding: 10px 15px;
-  cursor: pointer;
-  margin-top: 30px;
-`;
+import { Container, H1, Button } from "../styles/employees";
+const Table = React.lazy(() => import("../modules/Table"));
 
 function Employees(props) {
   const history = useHistory();
@@ -45,7 +20,9 @@ function Employees(props) {
     <>
       <Container>
         <H1>Current Employees</H1>
-        <Table employeeList={state.employeeList} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Table employeeList={state.employeeList} />
+        </Suspense>
         <Button onClick={viewHomepage}>Home</Button>
       </Container>
     </>

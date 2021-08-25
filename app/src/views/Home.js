@@ -1,6 +1,4 @@
 import { useHistory } from "react-router-dom";
-import DatePickerInput from "../modules/DatePickerInput";
-import SelectInputField from "../modules/SelectInputField";
 import Modal from "@christinebogdan/modal-plugin-react";
 import {
   Container,
@@ -14,11 +12,15 @@ import {
   Fieldset,
   Line,
 } from "../styles/home";
-import { useContext, useEffect, useState } from "react";
+import React, { Suspense, useContext, useEffect, useState } from "react";
 import { AppContext } from "../App";
 import { states } from "../helper/states";
 import { departments } from "../helper/departments";
 
+const DatePickerInput = React.lazy(() => import("../modules/DatePickerInput"));
+const SelectInputField = React.lazy(() =>
+  import("../modules/SelectInputField")
+);
 
 function Home(props) {
   const history = useHistory();
@@ -89,18 +91,22 @@ function Home(props) {
           />
 
           <Label htmlFor="date-of-birth">Date of Birth</Label>
-          <DatePickerInput
-            id="date-of-birth"
-            onChange={handleChange}
-            value={state.createEmployee.dateOfBirth}
-          ></DatePickerInput>
+          <Suspense fallback={<div>Loading...</div>}>
+            <DatePickerInput
+              id="date-of-birth"
+              onChange={handleChange}
+              value={state.createEmployee.dateOfBirth}
+            ></DatePickerInput>
+          </Suspense>
 
           <Label htmlFor="start-date">Start Date</Label>
-          <DatePickerInput
-            id="start-date"
-            onChange={handleChange}
-            value={state.createEmployee.startDate}
-          ></DatePickerInput>
+          <Suspense fallback={<div>Loading...</div>}>
+            <DatePickerInput
+              id="start-date"
+              onChange={handleChange}
+              value={state.createEmployee.startDate}
+            ></DatePickerInput>
+          </Suspense>
 
           <Fieldset>
             <legend>Address</legend>
@@ -122,12 +128,14 @@ function Home(props) {
             />
 
             <Label htmlFor="state">State</Label>
-            <SelectInputField
-              onChange={handleChange}
-              value={state.createEmployee.state}
-              id="state"
-              data={states}
-            />
+            <Suspense fallback={<div>Loading...</div>}>
+              <SelectInputField
+                onChange={handleChange}
+                value={state.createEmployee.state}
+                id="state"
+                data={states}
+              />
+            </Suspense>
 
             <Label htmlFor="zip-code">Zip Code</Label>
             <Input
@@ -139,12 +147,14 @@ function Home(props) {
           </Fieldset>
 
           <Label htmlFor="department">Department</Label>
-          <SelectInputField
-            onChange={handleChange}
-            value={state.createEmployee.department}
-            id="department"
-            data={departments}
-          />
+          <Suspense fallback={<div>Loading...</div>}>
+            <SelectInputField
+              onChange={handleChange}
+              value={state.createEmployee.department}
+              id="department"
+              data={departments}
+            />
+          </Suspense>
           <Button onClick={handleSubmit}>Save</Button>
           <Modal
             animation={true}
