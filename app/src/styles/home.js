@@ -86,17 +86,3 @@ export const Button = styled.button`
   cursor: pointer;
   margin-top: 30px;
 `;
-
-// export const styledComponents = {
-//   H1: H1,
-//   H2: H2,
-//   Line: Line,
-//   Container: Container,
-//   FormContainer: FormContainer,
-//   Form: Form,
-//   Label: Label,
-//   Fieldset: Fieldset,
-//   Input: Input,
-//   Select: Select,
-//   Button: Button,
-// };

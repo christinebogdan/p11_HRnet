@@ -60,7 +60,7 @@ export const reducer = (state, action) => {
         ...state,
         createEmployee: { ...state.createEmployee, department: action.value },
       };
-    case "employeeList": // HIER: neue employee list in var speichern, var in localstorage ablegen, var in state einfügen
+    case "employeeList":
       return {
         ...state,
         employeeList: action.value,
