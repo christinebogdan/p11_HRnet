@@ -20,9 +20,33 @@ function Employees(props) {
     <>
       <Container>
         <H1>Current Employees</H1>
-        <Suspense fallback={<div>Loading...</div>}>
+        <table>
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Start Date</th>
+              <th>Department</th>
+              <th>Date of Birth</th>
+              <th>Street</th>
+              <th>City</th>
+              <th>State</th>
+              <th>Zip Code</th>
+            </tr>
+          </thead>
+          {state.employeeList.map((employee, index) => {
+            return (
+              <tr key={index}>
+                {employee.map((entry, index) => {
+                  return <td key={index}>{entry}</td>;
+                })}
+              </tr>
+            );
+          })}
+        </table>
+        {/* <Suspense fallback={<div>Loading...</div>}>
           <Table employeeList={state.employeeList} />
-        </Suspense>
+        </Suspense> */}
         <Button onClick={viewHomepage}>Home</Button>
       </Container>
     </>

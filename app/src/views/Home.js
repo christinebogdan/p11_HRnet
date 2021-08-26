@@ -16,11 +16,27 @@ import React, { Suspense, useContext, useEffect, useState } from "react";
 import { AppContext } from "../App";
 import { states } from "../helper/states";
 import { departments } from "../helper/departments";
+import styled from "styled-components";
 
 const DatePickerInput = React.lazy(() => import("../modules/DatePickerInput"));
 const SelectInputField = React.lazy(() =>
   import("../modules/SelectInputField")
 );
+
+export const Select = styled.select`
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid grey;
+  height: 25px;
+  background-color: rgb(238, 238, 238);
+  font-size: 16px;
+
+  &:focus {
+    background-color: rgba(255, 255, 255, 0.7);
+    outline: none;
+    border-bottom: 2px solid rgb(84, 140, 168);
+  }
+`;
 
 function Home(props) {
   const history = useHistory();
@@ -91,22 +107,35 @@ function Home(props) {
           />
 
           <Label htmlFor="date-of-birth">Date of Birth</Label>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Input
+            type="date"
+            id="date-of-birth"
+            value={state.createEmployee.dateOfBirth}
+            onChange={handleChange}
+          />
+          {/* <Suspense fallback={<div>Loading...</div>}>
             <DatePickerInput
               id="date-of-birth"
               onChange={handleChange}
               value={state.createEmployee.dateOfBirth}
             ></DatePickerInput>
-          </Suspense>
+          </Suspense> */}
 
-          <Label htmlFor="start-date">Start Date</Label>
+          {/* <Label htmlFor="start-date">Start Date</Label>
           <Suspense fallback={<div>Loading...</div>}>
             <DatePickerInput
               id="start-date"
               onChange={handleChange}
               value={state.createEmployee.startDate}
             ></DatePickerInput>
-          </Suspense>
+          </Suspense> */}
+          <Label htmlFor="start-date">Start Date</Label>
+          <Input
+            type="date"
+            id="start-date"
+            value={state.createEmployee.startDate}
+            onChange={handleChange}
+          />
 
           <Fieldset>
             <legend>Address</legend>
@@ -128,14 +157,27 @@ function Home(props) {
             />
 
             <Label htmlFor="state">State</Label>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Select
+              onChange={handleChange}
+              value={state.createEmployee.state}
+              id="state"
+            >
+              {states.map((element, index) => {
+                return (
+                  <option value={element.name} text={element.name} key={index}>
+                    {element.name}
+                  </option>
+                );
+              })}
+            </Select>
+            {/* <Suspense fallback={<div>Loading...</div>}>
               <SelectInputField
                 onChange={handleChange}
                 value={state.createEmployee.state}
                 id="state"
                 data={states}
               />
-            </Suspense>
+            </Suspense> */}
 
             <Label htmlFor="zip-code">Zip Code</Label>
             <Input
@@ -147,14 +189,27 @@ function Home(props) {
           </Fieldset>
 
           <Label htmlFor="department">Department</Label>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Select
+            onChange={handleChange}
+            value={state.createEmployee.department}
+            id="department"
+          >
+            {departments.map((element, index) => {
+              return (
+                <option value={element.name} text={element.name} key={index}>
+                  {element.name}
+                </option>
+              );
+            })}
+          </Select>
+          {/* <Suspense fallback={<div>Loading...</div>}>
             <SelectInputField
               onChange={handleChange}
               value={state.createEmployee.department}
               id="department"
               data={departments}
             />
-          </Suspense>
+          </Suspense> */}
           <Button onClick={handleSubmit}>Save</Button>
           <Modal
             animation={true}
