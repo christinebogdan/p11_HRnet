@@ -2,7 +2,13 @@ import { useHistory } from "react-router-dom";
 import React, { Suspense, useContext, useEffect } from "react";
 import { AppContext } from "../App";
 import { Container, H1, Button } from "../styles/employees";
+import styled from "styled-components";
+
 const Table = React.lazy(() => import("../modules/Table"));
+
+const TH = styled.th`
+  font-weight: normal;
+`;
 
 function Employees(props) {
   const history = useHistory();
@@ -23,15 +29,15 @@ function Employees(props) {
         <table>
           <thead>
             <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Start Date</th>
-              <th>Department</th>
-              <th>Date of Birth</th>
-              <th>Street</th>
-              <th>City</th>
-              <th>State</th>
-              <th>Zip Code</th>
+              <TH>First Name</TH>
+              <TH>Last Name</TH>
+              <TH>Start Date</TH>
+              <TH>Department</TH>
+              <TH>Date of Birth</TH>
+              <TH>Street</TH>
+              <TH>City</TH>
+              <TH>State</TH>
+              <TH>Zip Code</TH>
             </tr>
           </thead>
           {state.employeeList.map((employee, index) => {
