@@ -12,16 +12,16 @@ import {
   Fieldset,
   Line,
 } from "../styles/home";
-import React, { Suspense, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../App";
 import { states } from "../helper/states";
 import { departments } from "../helper/departments";
 import styled from "styled-components";
 
-const DatePickerInput = React.lazy(() => import("../modules/DatePickerInput"));
-const SelectInputField = React.lazy(() =>
-  import("../modules/SelectInputField")
-);
+// const DatePickerInput = React.lazy(() => import("../modules/DatePickerInput"));
+// const SelectInputField = React.lazy(() =>
+//   import("../modules/SelectInputField")
+// );
 
 export const Select = styled.select`
   width: 100%;

@@ -2,13 +2,8 @@ import { useHistory } from "react-router-dom";
 import React, { Suspense, useContext, useEffect } from "react";
 import { AppContext } from "../App";
 import { Container, H1, Button } from "../styles/employees";
-import styled from "styled-components";
 
 const Table = React.lazy(() => import("../modules/Table"));
-
-const TH = styled.th`
-  font-weight: normal;
-`;
 
 function Employees(props) {
   const history = useHistory();
@@ -26,7 +21,7 @@ function Employees(props) {
     <>
       <Container>
         <H1>Current Employees</H1>
-        <table>
+        {/* <table>
           <thead>
             <tr>
               <TH>First Name</TH>
@@ -49,10 +44,10 @@ function Employees(props) {
               </tr>
             );
           })}
-        </table>
-        {/* <Suspense fallback={<div>Loading...</div>}>
+        </table> */}
+        <Suspense fallback={<div>Loading...</div>}>
           <Table employeeList={state.employeeList} />
-        </Suspense> */}
+        </Suspense>
         <Button onClick={viewHomepage}>Home</Button>
       </Container>
     </>
