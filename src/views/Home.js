@@ -155,7 +155,9 @@ function Home(props) {
               data={departments}
             />
           </Suspense>
-          <Button onClick={handleSubmit}>Save</Button>
+          <Button type="submit" onClick={handleSubmit}>
+            Save
+          </Button>
           <Modal
             animation={true}
             show={showModal}
